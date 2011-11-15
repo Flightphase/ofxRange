@@ -43,6 +43,10 @@ class ofRange {
         return (min != rg.min) || (max != rg.max);
     }
 	
+	float span(){
+		return max - min;
+	}
+	
     union  {
         struct {
             float min;
