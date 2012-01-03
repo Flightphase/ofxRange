@@ -47,14 +47,18 @@ class ofRange {
     }
 	
 	bool contains(float p){
-		return p >= min && p <= max;
+		return p >= min && p < max;
 	}
 	
 	bool contains(const ofRange& rg){
-		return rg.min >= min && rg.max <= max;
+		return rg.min >= min && rg.max < max;
 	}
 	
 	bool intersects(const ofRange& rg){
+		return contains(rg.min) || contains(rg.max);
+	}
+
+	ofRange getClamped(const ofRange& rg){
 		return contains(rg.min) || contains(rg.max);
 	}
 	
@@ -62,6 +66,19 @@ class ofRange {
 		return max - min;
 	}
 	
+	ofRange getClamped(const ofRange& rg) const {
+		ofRange crg;
+		crg.min = MAX(rg.min,min);
+		crg.max = MIN(rg.max,max);		
+		return crg;
+	}
+	
+    ofRange& clamp(const ofRange& rg){
+		min = MAX(rg.min,min);
+		max = MIN(rg.max,max);
+		return *this;
+	}
+
 	//union
 	ofRange operator+( const ofRange& rg ) const;
 	ofRange& operator+=( const ofRange& rg );
@@ -89,6 +106,10 @@ class ofRange {
 };
 
 //ofVec2f
+
+//non member ops
+ofRange operator+( float f, const ofRange& vec );
+ofRange operator-( float f, const ofRange& vec );
 
 inline ofRange ofRange::operator+( const ofRange& rg ) const {
 	return ofRange(MIN(min, rg.min), MAX(max, rg.max));
@@ -145,4 +166,13 @@ inline istream& operator>>(istream& is, ofRange& rg) {
 	is.ignore(1);
 	return is;
 }
+
+inline ofRange operator+( float f, const ofRange& rg ){
+	return ofRange(f + rg.min, f + rg.max);
+}
+
+inline ofRange operator-( float f, const ofRange& rg ){
+	return ofRange(f - rg.min, f - rg.max);
+};
+
 
