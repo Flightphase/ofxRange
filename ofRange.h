@@ -1,8 +1,6 @@
 /*
- *  ofRange_<T>.h
- *  SFEditor
  *
- *  Created by Jim on 1/15/11.
+ *  Created by James George on 1/15/11.
  *  Templated by Christopher Baker on 6/27/12
  *
  */
@@ -60,9 +58,11 @@ class ofRange_ {
 	}
 	
 	bool intersects(const ofRange_<T>& rg){
-		return contains(rg.min) || contains(rg.max);
+        bool intersects = this->contains(rg) || (min >= rg.min && max < rg.max) || contains(rg.min) || contains(rg.max);
+		return intersects;
 	}
 
+    //this is broken
 	ofRange_<T> getClamped(const ofRange_<T>& rg){
 		return contains(rg.min) || contains(rg.max);
 	}
