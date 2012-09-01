@@ -71,6 +71,10 @@ class ofRange_ {
 		return max - min;
 	}
 	
+	T center(){
+		return span()/2.0 + min;
+	}
+	
 	ofRange_<T> getClamped(const ofRange_<T>& rg) const {
 		ofRange_<T> crg;
 		crg.min = MAX(rg.min,min);
