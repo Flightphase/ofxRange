@@ -50,11 +50,11 @@ class ofRange_ {
     }
 	
 	bool contains(T p){
-		return p >= min && p < max;
+		return p >= min && p <= max;
 	}
 	
 	bool contains(const ofRange_<T>& rg){
-		return rg.min >= min && rg.max < max;
+		return rg.min >= min && rg.max <= max;
 	}
 	
 	bool intersects(const ofRange_<T>& rg){
