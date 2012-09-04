@@ -19,12 +19,12 @@ class ofRange_ {
         set(rg.min,rg.max);
 	}
 	
-	ofRange_( T _min=0.0, T _max=1.0){
-        set(_min, _max);
-	}
-
     ofRange_(T _value){
         set(_value);
+	}
+
+	ofRange_( T _min, T _max){
+        set(_min, _max);
 	}
     
     void set(const ofRange_<T>& rg) {
