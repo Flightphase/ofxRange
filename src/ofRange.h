@@ -21,10 +21,26 @@ class ofRange_ {
 	}
 	
 	ofRange_( T _min=0.0, T _max=1.0){
-		min = _min;
-		max = _max;
+        // enforce min <= max
+        if(_min <= _max) {
+            min = _min;
+            max = _max;
+        } else {
+            min = _max;
+            max = _min;
+        }
 	}
-	
+
+    ofRange_(T _value){
+        min = _value;
+        max = _value;
+	}
+    
+    void set(T _value){
+        min = _value;
+        max = _value;
+	}
+
 	void set(T _min, T _max){
 		min = _min;
 		max = _max;
