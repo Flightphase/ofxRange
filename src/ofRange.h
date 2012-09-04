@@ -38,6 +38,11 @@ class ofRange_ {
 		max = MAX(min, _max);
 	}
     
+    void growToInclude(T _value) {
+        setMin(_value);
+        setMax(_value);
+    }
+    
     // map
     // 
     
