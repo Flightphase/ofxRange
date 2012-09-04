@@ -16,11 +16,27 @@ class ofRange_ {
 	virtual ~ofRange_(){}
 	
 	ofRange_( const ofRange_<T>& rg){
-		min = rg.min;
-		max = rg.max;
+        set(rg.min,rg.max);
 	}
 	
 	ofRange_( T _min=0.0, T _max=1.0){
+        set(_min, _max);
+	}
+
+    ofRange_(T _value){
+        set(_value);
+	}
+    
+    void set(const ofRange_<T>& rg) {
+        set(rg.min,rg.max);
+    }
+    
+    void set(T _value){
+        min = _value;
+        max = _value;
+	}
+
+	void set(T _min, T _max){
         // enforce min <= max
         if(_min <= _max) {
             min = _min;
@@ -29,21 +45,6 @@ class ofRange_ {
             min = _max;
             max = _min;
         }
-	}
-
-    ofRange_(T _value){
-        min = _value;
-        max = _value;
-	}
-    
-    void set(T _value){
-        min = _value;
-        max = _value;
-	}
-
-	void set(T _min, T _max){
-		min = _min;
-		max = _max;
 	}
 	
 	void setMin(T _min){
@@ -127,7 +128,11 @@ class ofRange_ {
         return *this;
     }
 
-	
+    ofRange_<T>& operator = (const ofRange_<T>& rg) {
+        set(rg);
+        return *this;
+    }
+    
 	ofRange_<T>  operator +( const T f ) const {
         return ofRange_<T>(min+f, max+f);
     }
