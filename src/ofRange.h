@@ -19,7 +19,7 @@ class ofRange_ {
         set(rg.min,rg.max);
 	}
 	
-    ofRange_(T _value){
+    ofRange_(T _value = 0.0f){
         set(_value);
 	}
 
