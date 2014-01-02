@@ -56,8 +56,8 @@ class ofRange_ {
 	}
     
     void growToInclude(T _value) {
-        setMin(_value);
-        setMax(_value);
+		min = MIN(_value, min);
+		max = MAX(_value, max);
     }
     
     // map
@@ -97,6 +97,10 @@ class ofRange_ {
 		return span()/2.0 + min;
 	}
 	
+	T getNormalized(const T v) const {
+		return (v - min) / (max - min);
+	}
+
 	ofRange_<T> getClamped(const ofRange_<T>& rg) const {
 		ofRange_<T> crg;
 		crg.min = MAX(rg.min,min);
